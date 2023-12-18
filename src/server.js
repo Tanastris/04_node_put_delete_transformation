@@ -40,8 +40,9 @@ app.get("/api/users/:userId", (req, res) => {
 // DELETE /api/users/1 = deletes user
 app.delete("/api/users/:userId", (req, res) => {
   // atfiltruoti users ir grazinti viska isskyrus ta kurio id  === userId
-  user = users.filter((uObj) => {});
-  res.json("deleting user");
+  const userId = +req.params.userId;
+  users = users.filter((uObj) => uObj.id !== userId);
+  res.json(users);
 });
 
 // Run the server

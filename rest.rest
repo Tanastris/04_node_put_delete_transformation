@@ -5,4 +5,4 @@ GET http://localhost:3000/api/users
 GET http://localhost:3000/api/users/4
 
 ### Single user
-DELETE  http://localhost:3000/api/users/1
+DELETE  http://localhost:3000/api/users/3
