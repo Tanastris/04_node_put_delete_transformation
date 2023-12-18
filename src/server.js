@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 // DATA
 
-let users = [
+const users = [
   {
     id: 1,
     name: 'Serbentautas',
