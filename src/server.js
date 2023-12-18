@@ -1,6 +1,7 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+
 const app = express();
 
 const PORT = 3000;
@@ -8,25 +9,41 @@ const PORT = 3000;
 // DATA
 
 let users = [
-  { id: 1, name: "Serbentautas", town: "Vilnius", isDeleted: false },
-  { id: 2, name: "Lenteja", town: "Kaunas", isDeleted: false },
-  { id: 3, name: "James", town: "London", isDeleted: false },
+  {
+    id: 1,
+    name: 'Serbentautas',
+    town: 'Vilnius',
+    isDeleted: false,
+  },
+  {
+    id: 2,
+    name: 'Lenteja',
+    town: 'Kaunas',
+    isDeleted: false,
+  },
+  {
+    id: 3,
+    name: 'James',
+    town: 'London',
+    isDeleted: false,
+  },
 ];
 
 // Middleware
-app.use(morgan("dev"));
+app.use(morgan('dev'));
+app.use(cors());
 
 // routes
-app.get("/", function (req, res) {
-  res.send("Hello World");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
 // GET /api/users - grazina visus vartotojus
-app.get("/api/users", (req, res) => {
+app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-app.get("/api/users/:userId", (req, res) => {
+app.get('/api/users/:userId', (req, res) => {
   const userId = +req.params.userId;
   const found = users.find((obj) => obj.id === userId);
   if (found === undefined) {
@@ -38,7 +55,7 @@ app.get("/api/users/:userId", (req, res) => {
   res.json(found);
 });
 // DELETE /api/users/1 = deletes user
-app.delete("/api/users/:userId", (req, res) => {
+app.delete('/api/users/:userId', (req, res) => {
   // atfiltruoti users ir grazinti viska isskyrus ta kurio id  === userId
   const userId = +req.params.userId;
   users = users.filter((uObj) => uObj.id !== userId);
@@ -47,5 +64,5 @@ app.delete("/api/users/:userId", (req, res) => {
 
 // Run the server
 app.listen(PORT, () => {
-  `Server running on http://localhost:${PORT}`;
+  console.log(`Server running on http://localhost:${PORT}`);
 });
