@@ -1,0 +1,5 @@
+### All users
+GET http://localhost:3000/api/users
+
+### Single user
+GET http://localhost:3000/api/users/4
