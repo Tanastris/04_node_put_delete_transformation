@@ -79,7 +79,9 @@ app.post('apie/people');
 
 // GET /api/users - grazina visus vartotojus
 app.get('/api/users', (req, res) => {
-  res.json(users);
+  const notDeletedUsers = users.filter((uObj) => uObj.isDeleted === false);
+  console.log('notDeletedUsers ===', notDeletedUsers);
+  res.json(notDeletedUsers);
 });
 
 app.get('/api/users/:userId', (req, res) => {
@@ -97,7 +99,14 @@ app.get('/api/users/:userId', (req, res) => {
 app.delete('/api/users/:userId', (req, res) => {
   // atfiltruoti users ir grazinti viska isskyrus ta kurio id  === userId
   const userId = +req.params.userId;
-  users = users.filter((uObj) => uObj.id !== userId);
+  const found = users.find((obj) => obj.id === userId);
+  if (found === undefined) {
+    res.status(404).json({
+      msg: `user not found with id ${userId}`,
+    });
+    return;
+  }
+  found.isDeleted = true;
   res.json(users);
 });
 
