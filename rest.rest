@@ -4,5 +4,51 @@ GET http://localhost:3000/api/users
 ### Single user
 GET http://localhost:3000/api/users/4
 
-### Single user
+### Delete user
 DELETE  http://localhost:3000/api/users/3
+
+### Update user
+PUT http://localhost:3000/api/users/2
+Content-Type: application/json
+
+{  
+  "name": "Jane Doe",
+  "town": "Klaipeda"
+}
+
+### All users
+GET http://localhost:3000/api/people
+### Single user
+GET http://localhost:3000/api/people/1
+### Delete user
+DELETE  http://localhost:3000/api/people/3
+### Update user
+PUT http://localhost:3000/api/people/2
+Content-Type: application/json
+
+{  
+  "name": "Jane Doe",
+  "sex": "undefined"
+}
+### User creation
+POST http://localhost:3000/api/people/
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Jane Doe",
+  "surname": "Piktutytė",
+  "sex": "undefined",
+  "favColors": [
+    "red",
+    "violet",
+    "blue"
+  ],
+  "age": 26,
+  "income": 1300,
+  "married": false,
+  "hasCar": true
+}
+
+### get drivers
+GET http://localhost:3000/api/people/drivers
